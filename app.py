@@ -12,6 +12,7 @@ This module provides the complete financial analytics and banking engine:
 """
 
 import sqlite3
+import os
 import random
 import re
 from datetime import datetime
@@ -1255,5 +1256,9 @@ def delete_transaction(transaction_id):
 
 if __name__ == '__main__':
     init_db()
-    print("Banking Transactions Analysis System Backend is running on http://127.0.0.1:5000")
-    app.run(debug=True, port=5000)
+    print("Banking Transactions Analysis System Backend is running")
+    app.run(
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 5000)),
+        debug=False
+    )
